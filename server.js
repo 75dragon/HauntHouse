@@ -20,6 +20,7 @@ app.use('/static', express.static(__dirname + '/static'));
 // Routing
 app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/index.html'));
+  //res.send('<h1>Hello world</h1>');
 });
 
 server.listen(port, function() {
