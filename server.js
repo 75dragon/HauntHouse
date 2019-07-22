@@ -11,7 +11,7 @@ var io = socketIO(server);
 //mystuff
 var port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+  port = 5000;
 }
 
 //app.set('port', 5000);
@@ -26,6 +26,34 @@ app.get('/', function(request, response) {
 server.listen(port, function() {
   console.log('Starting server on port 5000');
 });
+
+
+var rooms = {};
+class Room
+{
+  constructor(x, y, z, name, length, height)
+  {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.name = name;
+    this.height = height;
+    this.width = width;
+  }
+}
+
+house["r0_0"] = new Room(0,0,0,"entrance hall", 400, 1000)
+
+
+
+
+
+
+
+
+
+
+
 
 var players = {};
 io.on('connection', function(socket) {
@@ -54,4 +82,5 @@ io.on('connection', function(socket) {
 
 setInterval(function() {
   io.sockets.emit('state', players);
+  io.sockets.emit('rooms', rooms);
 }, 1000 / 60);
